@@ -1,119 +1,118 @@
-Título: **_Sistema de Investimento em Cripto Ativos_**
+# **Title: _Cryptocurrency Investment System_**
 
-Sumário
+## **Table of Contents**
 
-[Introdução 3](#_Toc169438809)
+[Introduction 3](#_Toc169438809)  
+[Target Audience 3](#_Toc169438810)  
+[PO's Pain Points 3](#_Toc169438811)  
+[Proposed Solution 3](#_Toc169438812)  
+[System Modeling 3](#_Toc169438813)  
+[1. Database Modeling 3](#_Toc169438814)  
+[2. Backend Modeling 4](#_Toc169438815)  
+[System Infrastructure 6](#_Toc169438816)  
+[1. Physical Topology 6](#_Toc169438817)  
+[2. Logical Topology 7](#_Toc169438818)
 
-[Público-Alvo 3](#_Toc169438810)
+---
 
-[Dores do PO 3](#_Toc169438811)
+## **Introduction**
 
-[Solução Proposta 3](#_Toc169438812)
+The project aims to develop a software system that allows the Product Owner (PO), Uncle Scrooge, to invest in cryptocurrency assets securely, efficiently, and accessibly via the web. This document describes the product scope, target audience, identified pain points, and the proposed solution.
 
-[Modelagem do Sistema 3](#_Toc169438813)
+## Target Audience
 
-[1\. Modelagem do Banco de Dados 3](#_Toc169438814)
+- Individual and corporate investors interested in cryptocurrency assets.
+- Users who prefer to access their investments via the web.
+- Individuals concerned with the security of their financial data.
 
-[2\. Modelagem do Backend 4](#_Toc169438815)
+## PO's Pain Points
 
-[Infraestrutura do Sistema 6](#_Toc169438816)
+1. The need to invest in cryptocurrency assets online.
+2. Daily tracking of investments.
+3. Data and value security during network transmission.
+4. Transfers between multiple companies.
+5. Preference for accessing and making investments via a web system.
 
-[1\. Topologia Física 6](#_Toc169438817)
+## Proposed Solution
 
-[2\. Topologia Lógica 7](#_Toc169438818)
+- Invest in cryptocurrency assets securely and efficiently.
+- Track investments daily through detailed reports.
+- Ensure data security with two-factor authentication and encryption.
+- Make transfers between different accounts.
+- Enjoy an intuitive and responsive interface.
 
-# **Introdução**
+## System Modeling
 
-O projeto tem como objetivo desenvolver um sistema de software que permita ao Product Owner (PO) Tio Patinhas investir em criptoativos de maneira segura, eficiente e acessível via web. Este documento descreve o escopo do produto, o público-alvo, as dores identificadas e a solução proposta.
+### Database Modeling
 
-# Público-Alvo
+Database modeling is critical to ensure system performance and integrity. The Entity-Relationship model below describes the entities, their attributes, and the relationships between them.
 
-- Investidores individuais e empresariais interessados em criptoativos.
-- Usuário que preferem acessar seus investimentos via web.
-- Indivíduos preocupados com segurança de seus dados financeiros.
+### Backend Modeling
 
-# Dores do PO
+Backend modeling is essential to ensure the cryptocurrency investment system is robust, scalable, and maintains data integrity. The following class diagram describes the structure of backend classes, including their responsibilities, attributes, and methods. Each class has been carefully designed to reflect the system’s main operations and entities, promoting a clean and modular architecture.
 
-1. Necessidade de investir em criptoativos online.
-2. Acompanhamento diário dos investimentos.
-3. Segurança de dados e valores trafegados em rede.
-4. Transferência de valores entre várias empresas.
-5. Preferência por acessar e efetuar investimentos via sistema web.
+Note: The high-definition image was sent in the same zip file under the name "Class Diagram.png".
 
-# Solução Proposta
+The class model consists of the following parts:
 
-- Investir em criptoativos de maneira segura e eficiente.
-- Acompanhar diariamente seus investimentos através de relatórios detalhados.
-- Garantir a segurança dos dados com autenticação de dois fatores e criptografia.
-- Realizar transferência de valores entre diferentes contas.
-- Usufruir de uma interface intuitiva e responsiva.
+**Main Entities:**
 
-# Modelagem do Sistema
+- **User:** Represents system users, storing information such as ID, name, email, password, and creation date.
+- **Account:** Represents users' investment accounts, linking each account to a user and cryptocurrency type, as well as maintaining the balance and account number.
+- **Transaction:** An abstract class that serves as the base for various transaction types like deposits, withdrawals, and transfers, storing common transaction information.
+- **Deposit:** An extension of the Transaction class, representing a deposit made into an account.
+- **Withdrawal:** An extension of the Transaction class, representing a withdrawal from an account, including balance validation.
+- **Transfer:** An extension of the Transaction class, representing a transfer between two accounts, including source and destination accounts.
 
-## Modelagem do Banco de Dados
+**Services:**
 
-A modelagem do banco de dados é crucial para garantir o desempenho e a integridade do sistema. O modelo Entidade-Relacionamento abaixo descreve as entidades, seus atributos e os relacionamento entre elas.
+- **AccountService:** Provides essential account operations such as login, deposit, withdrawal, and transfer, applying specific business rules to each operation.
 
-## Modelagem do Backend
+**Repositories:**
 
-A modelagem do backend é essencial para garantir que o sistema de investimento em criptoativos seja robusto, escalável e mantenha a integridade dos dados. O diagrama de classes a seguir descreve a estrutura das classes no backend, incluindo suas responsabilidades, atributos e métodos. Cada classe foi cuidadosamente projetada para refletir as operações e entidades principais do sistema, promovendo uma arquitetura limpa e modular.
+- **UserRepository:** Manages user data access, including search and save operations.
+- **AccountRepository:** Manages account data access, including search and save operations.
+- **TransactionRepository:** Manages transaction data access, including search and save operations.
 
+The class diagram illustrates how these parts interact, ensuring the system can meet security, efficiency, and functionality requirements, providing a solid foundation for backend development.
 
-Observação: A imagem em alta definição foi enviada no mesmo arquivo zip, com o nome “Class Diagram.png”.
+## System Infrastructure
 
-O modelo de classes é composto pelas seguintes partes:
+### Physical Topology
 
-**Entidades Principais:**
+- **Application Servers:**
+  - **Web Server:** Hosts the web application where users access the system.
+  - **API Server:** Manages API requests, facilitating communication between the frontend and backend.
+  - **Application Server:** Processes business logic, including deposit, withdrawal, transfer operations, and currency price updates.
+  
+- **Database Servers:**
+  - **Primary Database:** Stores critical data such as users, accounts, and transactions.
+  - **Backup Database:** Replicates all data from the primary database, ensuring redundancy and recovery in case of failure.
 
-- **Usuario:** Representa os usuários do sistema, armazenando informações como ID, nome, email, senha e data de criação.
-- **Conta:** Representa as contas de investimento dos usuários, vinculando cada conta a um usuário e tipo de moeda, além de manter o saldo e número da conta.
-- **Transacao:** Classe abstrata que serve como base para diferentes tipos de transações, como depósitos, saques e transferências, armazenando informações comuns a todas as transações.
-- **Deposito:** Extensão da classe Transacao, representa um depósito feito em uma conta.
-- **Saque:** Extensão da classe Transacao, representa um saque feito de uma conta, incluindo validação de saldo.
-- **Transferencia:** Extensão da classe Transacao, representa uma transferência entre duas contas, incluindo as contas de origem e destino.
+- **Security Servers:**
+  - **Firewall:** Protects the network from unauthorized access.
+  - **Authentication Server:** Manages user authentication, including two-factor authentication (2FA).
 
-**Serviços:**
+- **Monitoring Servers:**
+  - Monitors server performance, detects failures, and ensures preventive maintenance.
 
-- **ServicoConta:** Fornece operações essenciais relacionadas às contas, como login, depósito, saque e transferência, aplicando regras de negócios específicas para cada operação.
+- **Backup and Recovery Servers:**
+  - Performs regular data and application backups, ensuring fast recovery in case of failure.
 
-**Repositórios:**
+### Logical Topology
 
-- **RepositorioUsuario:** Gerencia o acesso aos dados dos usuários, incluindo operações de busca e salvamento.
-- **RepositorioConta:** Gerencia o acesso aos dados das contas, incluindo operações de busca e salvamento.
-- **RepositorioTransacao:** Gerencia o acesso aos dados das transações, incluindo operações de busca e salvamento.
+- **Presentation Layer:**
+  - **Frontend:** Web interface where users interact with the system.
+  - **API Gateway:** API interface that serves as the entry point for all frontend requests.
 
-O diagrama de classes ilustra como essas partes interagem, garantindo que o sistema possa atender aos requisitos de segurança, eficiência e funcionalidade, proporcionando uma base sólida para o desenvolvimento do backend.
+- **Application Layer:**
+  - **Application Services:** Backend components that process business logic, such as withdrawal, deposit, transfer operations, and cryptocurrency price updates.
+  - **Authentication Services:** Manage user authentication and authorization.
 
-# Infraestrutura do Sistema
+- **Data Layer:**
+  - **Database Services:** Manage access to stored data, including queries, inserts, updates, and deletions.
+  - **Backup Services:** Manage data replication and backup.
 
-## Topologia Física
-
-- Servidores de Aplicação:
-  - Servidor Web: Hospeda a aplicação web onde os usuários acessam o sistema.
-  - Servidor de API: Gerencia as solicitações de API, realizando a comunicação entre o frontend e backend.
-  - Servidor de Aplicação: Processa a lógica de negócio do sistema, incluindo operações de depósitos, saques, transferências e atualização do preço dos tipos de moedas.
-- Servidores de banco de dados:
-  - Banco de Dados Primário: Armazena os dados críticos, como usuários, contas e transações.
-  - Banco de Dados de Backup: Replica todos os dados do banco de dados primário, garantindo a redundância e a recuperação em caso de falha.
-- Servidores de segurança:
-  - Firewall: Protege a rede contra acessos não autorizados.
-  - Servidor de Autenticação: Gerencia autenticação dos usuários, incluindo a autenticação de dois fatores (2FA).
-- Servidores de Monitoramento:
-  - Monitora o desempenho dos servidores, detectando falhas e garantindo a manutenção preventiva.
-- Servidores de Backup e Recuperação:
-  - Realiza backups regulares dos dados e das aplicações, garantindo a recuperação rápida em caso de falhas.
-
-## Topologia Lógica
-
-- Camada de Apresentação:
-  - Frontend: interface web onde os usuários interagem com o sistema.
-  - API Gateway: interface de api que serve como ponto de entrada para todas as solicitações do frontend.
-- Camada de Aplicação:
-  - Serviços de Aplicação: Componentes de backend que processam lógicas de negócios, como as operações de saque, deposito, transferência e atualização de preço do tipo de moeda.
-  - Serviços de autenticação: Gerenciam a autenticação e autorização dos usuários.
-- Camada de Dados:
-  - Serviços de Banco de Dados: Gerenciam o acesso aos dados armazenados, incluindo consultas, inserções, atualizações e exclusões.
-  - Serviços de Backup: Gerenciam a replicação e o backup dos dados.
-- Camada de Segurança:
-  - Serviços de Firewall: Protegem o sistema contra acessos não autorizados e ataques.
-  - Serviços de Criptografia: Garantem que os dados sensíveis sejam transmitidos e forma segura.
+- **Security Layer:**
+  - **Firewall Services:** Protect the system from unauthorized access and attacks.
+  - **Encryption Services:** Ensure sensitive data is transmitted securely.
